@@ -3,8 +3,13 @@ Esta es una recopilación de los temas vistos en el Curso Básico de JavaScript
 
 
 
-## [01_Type_datas.js](JS-B_Classes/01_Type_datas.js): Tipos de datos en JavaScript
-![Tipos de datos en JS](https://i.postimg.cc/KzFYcSRy/imagen-2024-01-16-171848600.png)
+# Introducción a JavaScript
+
+
+## [01_Type_datas.js](Mod_1_JS_Introduce/01_Type_datas.js): Tipos de datos en JavaScript
+<p align="center">
+  <img src="https://i.postimg.cc/KzFYcSRy/imagen-2024-01-16-171848600.png" alt="Aquí va el texto del enlace">
+</p>
 
 ### Saber el tipo de dato con `typeof`
 
@@ -29,7 +34,7 @@ typeof [1,2,3] // 'object'
 ```
 
 
-## [02_var.js](JS-B_Classes/02_var.js): Variables
+## [02_var.js](Mod_1_JS_Introduce/02_var.js): Variables
 
 Una **variable** es un símbolo que representa un elemento no específico dentro de un conjunto particular, a menudo denominado conjunto universal de la variable. Cada elemento en este conjunto es un valor de la variable. Las variables se encuentran en algoritmos, afirmaciones y fórmulas.
 
@@ -40,10 +45,14 @@ Las variables son elementos esenciales en las fórmulas, afirmaciones y algoritm
 ### Uso de Variables en Programación y Javascript
 
 En programación, una variable es un lugar en memoria en el cual podemos guardar objetos (números, texto, etc.). Esta posee un identificador o nombre con el cual podemos llamarla más tarde cuando la necesitemos.
+<p align="center">
+  <img src="https://i.postimg.cc/76LQv7Q0/imagen-2024-01-18-110310241.png" alt="Aquí va el texto del enlace">
+</p>
 
-![VarReprest](https://i.postimg.cc/76LQv7Q0/imagen-2024-01-18-110310241.png)
+<p align="center">
+  <img src="https://i.postimg.cc/d1zX834C/imagen-2024-01-18-110421664.png" alt="Aquí va el texto del enlace">
+</p>
 
-![VarCompr](https://i.postimg.cc/d1zX834C/imagen-2024-01-18-110421664.png)
 
 En términos más específicos, una variable consta de tres elementos principales:
 
@@ -103,10 +112,11 @@ var bigNumber = 1234567890123456789012345678901234567890n; // Variable de tipo B
 ```
 
 ### Buenas practicas al declarar variables
-![](https://i.postimg.cc/MGtdYDmV/imagen-2024-01-18-122536896.png)
+<p align="center">
+  <img src="https://i.postimg.cc/MGtdYDmV/imagen-2024-01-18-122536896.png" alt="Aquí va el texto del enlace">
+</p>
 
-
-## [02_var.js](JS-B_Classes/02_var.js): Funciones en JavaScript
+## [03_function.js](Mod_1_JS_Introduce/03_function.js): Funciones en JavaScript
 
 Las **funciones** son bloques de código que solucionan un problema específico para ser reutilizados. Existen dos tipos de funciones: declarativas y expresivas.
 
@@ -208,11 +218,298 @@ var nombre = function(nombre){
 }//Uncaught TypeError
 ```
 ### ¿Que significa `hoisting`?
+<p align="center">
+  <img src="https://i.postimg.cc/3rmV4WST/imagen-2024-01-18-141527515.png" alt="Aquí va el texto del enlace">
+</p>
 
-![](https://i.postimg.cc/3rmV4WST/imagen-2024-01-18-141527515.png)
 **Hoisting** detecta primero declaraciones de variables y funciones para poder ser utilizadas, pero no su definición (valor).
 
 Y la expresión de función al ser una función declarada dentro de una variable, detecta solamente `var nombre;` (sin valor) por lo tanto la función NO es detectada en un principio.
+<p align="center">
+  <img src="https://i.postimg.cc/sxdLHR2q/imagen-2024-01-18-141509124.png" alt="Aquí va el texto del enlace">
+</p>
 
-![](https://i.postimg.cc/sxdLHR2q/imagen-2024-01-18-141509124.png)
+# Bases de JavaScript
 
+## [04_scope.js](Mod_2_JS_Bases/04_scope.js): `Scope` o alcance de las variables en JS
+El scope es el entorno donde las variables tienen alcance dentro del código de JavaScript. Determina el valor que tendrá la variable dependiendo de dónde se encuentre.
+
+### Entender el scope de manera metaforica
+>[!TIP]
+>
+> Imagina que pierdes algo importante (llaves, dinero, celular), comienzas a buscar este objeto por los lugares más cercanos en que te encuentras; si no lo encuentras, buscas en los lugares más lejanos y así sucesivamente hasta encontrarlo. Las llaves son las variables y tú eres JavaScript.
+
+### Cadena de Scope `(Scope Chaining)`
+Cuando se hace referencia a una variable, JavaScript buscará su declaración en el entorno más cercano y seguirá buscando en entornos más lejanos hasta llegar a la línea de código donde la variable esté declarada.
+
+### Tipos de Scope
+Existen dos tipos de scope: global y local. El scope local puede ser de función o de bloque.
+
+| ![Aquí va el texto del enlace](https://i.postimg.cc/5Nmgwtvj/imagen-2024-01-21-204141835.png) | ![Aquí va el texto del enlace](https://i.postimg.cc/T36XYxWT/imagen-2024-01-21-210714861.png) |
+|:---:|:---:|
+
+### Scope Global
+Las variables globales son aquellas que se encuentran declaradas fuera de los bloques de código o funciones. Pueden ser accedidas desde cualquier lugar del programa.
+```javascript
+var miNombre = "Diego"; // Variable global
+function nombreCompleto() { // Función
+    var miApellido = "De Granda"; // Variable local
+    console.log(`hola ${miNombre} ${miApellido}`); // Muestra "hola Diego De Granda"
+}
+nombreCompleto(); // Muestra "hola Diego De Granda"
+miNombre; // Muestra "Diego"
+miApellido; // Muestra "Uncaught ReferenceError: miApellido is not defined"
+```
+### Scope Local
+Las variables locales son aquellas que se encuentran declaradas dentro de los bloques de código o funciones. Solo se pueden acceder desde una función o bloque del programa.
+```javascript
+function nombreCompleto() { // Función
+    var miNombre = "Diego"; // Variable local
+    var miApellido = "De Granda"; // Segunda Variable local
+    console.log(`hola ${miNombre} ${miApellido}`); // Muestra "hola Diego De Granda"
+}
+nombreCompleto(); // Muestra "hola Diego De Granda"
+miNombre; // Muestra "Uncaught ReferenceError: miNombre is not defined"
+miApellido; // Muestra "Uncaught ReferenceError: miApellido is not defined"
+```
+
+
+
+## [05_hosting-ECMAS5.js](Mod_2_JS_Bases/05_hosting-ECMAS5.js): El `hoisting` en JavaScript y buenas practicas al declarar variables
+
+El **Hoisting** es un comportamiento de JavaScript que mueve las declaraciones de variables y funciones al inicio del scope más cercano (global o de función). Este comportamiento solo afecta a las declaraciones, no a las asignaciones.
+
+## Hoisting en Variables
+
+Cuando una variable es declarada con `var` pero aún no está definida, JavaScript la inicializa con un valor de `undefined`. Por ejemplo:
+
+```javascript
+console.log(nombre) // undefined
+var nombre = "Andres"
+```
+
+En este caso, JavaScript interpreta el código de la siguiente manera:
+
+```javascript
+// Hoistin: Declara y asigna undefined
+var nombre = undefined
+console.log(nombre) // undefined
+nombre = "Andres"
+```
+
+## Hoisting en Funciones
+
+JavaScript permite invocar funciones antes de su declaración. Por ejemplo:
+
+```javascript
+console.log( saludar() ) // "Hola"
+
+function saludar() {
+  return "Hola";
+}
+```
+
+En este caso, JavaScript interpreta el código de la siguiente manera:
+
+```javascript
+// Hoisting: Declara la función antes de ser invocada
+function saludar() {
+  return "Hola";
+}
+
+console.log( saludar() ); // "Hola"
+```
+
+A diferencia de las variables, JavaScript guarda las funciones en memoria durante la fase de creación de un contexto de ejecución, por lo que no se les asigna `undefined` a menos de que exista una variable como se puede visualizar en el siguiente ejemplo.
+
+```javascript
+saludo(); // Esta llamada a la función hey se procesa antes de que se declare la función.
+function saludo(){ // Se declara la función hey
+    return 'Hola ' + nombre;
+}
+var nombre = "Aaron" 
+// Output: "Hola undefined"
+```
+1. El compilador toma las funciones y variables y las **“sube”** en el codigo, sin inicializar variables:
+
+```javascript
+var nombre;
+
+function saludo() {
+    console.log("Hola " + nombre);
+}
+
+saludo();
+
+var nombre = "Aaron";
+```
+
+2. Le asigna memoria a la variable y le da el valor de `undefined` al suceder la asignacion de memoria
+
+```javascript
+var nombre = undefined;
+
+function saludo() {
+    console.log("Hola " + nombre);
+}
+
+saludo();
+
+nombre = "Aaron";
+```
+
+3. Y como hemos visto, la variable se asigna como undefined y posteriormente se utiliza al llegar a la linea:
+```javascript
+saludos()
+```
+
+- pues ahi lo que hace es ejecutar la funcion que ya fue procesada, pero con un valor de la variable que aun no se le asigno, quedando como `undefined`.
+
+4. Despues de correr la funcion, le asigna el valor correcto a la variable ya declarada:
+
+```javascript
+var nombre = "Aaron";
+
+function saludo() {
+    console.log("Hola " + nombre);
+}
+
+saludo();
+```
+
+Pero ya es demasiado tarde, pues la funcion ya fue ejecutada.
+  
+>[!IMPORTANT]
+> ### Buenas Prácticas
+>
+> Se recomienda declarar las variables y las funciones lo más arriba posible del código para evitar posibles errores relacionados con el Hoisting.
+ 
+### Diferencia de buenas practicas y malas practicas  mediante un ejemplo
+- **Buenas practicas**
+
+```javascript
+var miNombre = "Einar";
+function saludo(){
+    console.log("Hola " + miNombre); 
+}
+saludo(); // "Hola Einar"
+```
+
+- **Malas practicas**
+  
+```javascript
+function saludo(){
+    console.log("Hola " + miNombre); 
+}
+saludo();
+var miNombre = "Einar"; // "Hola undefined"
+```
+
+> [!NOTE]
+> ### Solución al `hoisting`
+> 
+> El Hoisting se soluciona con las nuevas formas de declarar variables con `let` y `const`.
+
+
+
+## [06_coercion.js](Mod_2_JS_Bases/06_coercion.js): Coerción implícita y explicita de los tipos de datos en JavaScript
+
+La **Coerción** es un proceso en JavaScript que convierte un tipo de dato a otro. Existen dos tipos de coerción: **implícita** y **explícita**.
+
+### Coerción Implícita
+
+La coerción implícita es la transformación automática de tipos realizada por JavaScript cuando se encuentran operaciones con diferentes tipos de datos. Esto puede llevar a resultados inesperados debido a la naturaleza débil y dinámicamente tipada de JavaScript. 
+
+Ejemplos de coerción implícita:
+
+```javascript
+var a = 4 + "7"; // 47
+typeof a; // string
+var b = 4 * "7"; // 28
+typeof b; // number
+2 + true // 3
+false - 3 // -3
+!3 // false
+```
+
+### Coerción Explícita
+
+La coerción explícita es la transformación controlada de tipos de datos. Se utilizan las funciones `Number()`, `String()` y `Boolean()` para convertir a tipo número, string y lógico, respectivamente.
+
+- **Ejemplos de coerción explícita:**
+
+```javascript
+Number("47") // 47
+String(51) // "51"
+Boolean(1) // true
+
+var a = 20; // 20
+var b = a + ""; // string
+typeof b; // string
+var c = String(a); // string
+typeof c; // string
+var d = Number(c); // number
+```
+
+Se puede utilizar `typeof` para verificar el tipo de dato resultante:
+
+```javascript
+typeof Number("47") // 'number'
+typeof String(51) // 'string'
+typeof Boolean(1) // 'boolean'
+```
+> [!TIP]
+> 
+> Para evitar errores relacionados con la coerción implícita, se recomienda realizar la coerción explícita antes de realizar cualquier operación.
+
+
+
+## [07_truthy-falsy.js](Mod_2_JS_Bases/07_truthy-falsy.js): Valores `Thruthy` y `Falsy` en JavaScript
+
+Los valores **Truthy** y **Falsy** son aquellos que se convierten en verdadero y falso, respectivamente, cuando se realiza una coerción a booleano. Son fundamentales para manejar estructuras condicionales en JavaScript.
+
+### Valores Falsy
+
+Un valor Falsy es aquel que se convierte en falso en un contexto booleano. Los valores Falsy son: `0`, `""` (string vacío), `false`, `NaN`, `undefined` y `null`.
+
+- **Ejemplos de coerción explícita a Falsy:**
+
+```javascript
+Boolean(0); // false
+Boolean(""); // false
+Boolean(false); // false
+Boolean(null); // false
+Boolean(undefined); // false
+Boolean(NaN); // NaN se traduce como Not a Number y es un valor especial de JavaScript que indica que no es un número por lo que es false
+```
+
+También se puede realizar una coerción implícita con el operador de negación (`!`), aunque no es recomendable.
+```javascript
+!!0; // false
+!!""; // false
+!!false; // false
+!!null; // false
+!!undefined; // false
+!!NaN; // false
+```
+
+### Valores Truthy
+
+Un valor Truthy es aquel que se convierte en verdadero en un contexto booleano. Todos los valores que no sean Falsy son Truthy.
+
+- **Ejemplos de coerción explícita a Truthy:**
+```javascript
+Boolean(1); // true
+Boolean("Hola"); // true
+Boolean(true); // true
+Boolean([1,2,3]); // true 
+Boolena(function(){}) // true
+Boolean({a:1, b:2, c:3}) // true
+```
+
+Es importante destacar que en JavaScript, todas las estructuras vacías de array y objetos son Truthy.
+
+```javascript
+Boolean([]) // true
+Boolean({}) // true
+```
